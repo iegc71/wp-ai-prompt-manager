@@ -29,14 +29,20 @@ if (have_posts()) : while (have_posts()) : the_post();
         if ($prompt_content) : ?>
             <div class="prompt-text">
                 <?php echo wp_kses_post($prompt_content); ?>
-                <button class="copy-button" 
-                        data-html="<?php echo esc_attr($prompt_content); ?>" 
-                        data-text="<?php echo esc_attr($plain_content); ?>" 
+                <button class="copy-button"
+                        data-html="<?php echo esc_attr($prompt_content); ?>"
+                        data-text="<?php echo esc_attr($plain_content); ?>"
                         style="float: right; margin-left: 10px;">
                     <span class="dashicons dashicons-clipboard"></span> Copiar
                 </button>
             </div>
         <?php endif; ?>
+        <?php
+        // Llama a la plantilla de comentarios
+        if ( comments_open() || get_comments_number() ) {
+            comments_template();
+        }
+        ?>
     </div>
 </div>
 <script>
