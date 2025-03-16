@@ -1,0 +1,271 @@
+.prompts-container {
+    padding: 20px;
+}
+
+.prompt-search-form {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.prompt-search-form input[type="text"] {
+    flex: 1;
+    padding: 7px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.prompt-search-form .select2-container {
+    min-width: 200px;
+}
+
+.prompt-search-form .select2-selection--multiple {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+    height: 38px;
+}
+
+.prompt-search-form .select2-selection__rendered {
+    line-height: 28px;
+}
+
+.prompt-search-form .select2-selection__choice {
+    /*background-color: #0073aa;*/
+    /*color: #fff;*/
+    border: none !important;
+    /*border-radius: 3px;*/
+    vertical-align: top !important;
+    margin-top: -1px !important;
+}
+
+.prompt-search-form .select2-search__field {
+    margin: 0;
+    height:auto !important;
+}
+/*.post-type-archive-prompt .select2-results__option {*/
+/*    margin-top: 32px;*/
+/*}*/
+.post-type-archive-prompt .select2-results__option {
+    background-color: #0273aa !important;
+}
+
+.prompt-search-form button {
+    padding: 10px 20px;
+    background: #0073aa;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.prompt-search-form button:hover {
+    background: #005d87;
+}
+
+.prompts-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+.body-prompt-item {
+    padding: 15px;
+}
+.footer-prompt-item {
+    background: #dde9f2;
+    padding: 6px 15px;
+}
+.prompt-item {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.single-prompt h1 {
+    font-size: 2em;
+}
+
+.prompt-item h2 a {
+    color: #0073aa;
+    text-decoration: none;
+}
+
+.prompt-item h2 a:hover {
+    text-decoration: underline;
+}
+
+.prompt-description {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.prompt-text {
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+}
+
+.prompt-categories {
+    font-size: 0.9em;
+    color: #888;
+    overflow: hidden; /* Evita que el float desborde */
+    display: contents;
+}
+
+.prompt-categories a {
+    color: #0073aa;
+    text-decoration: none;
+}
+
+.prompt-categories a:hover {
+    text-decoration: underline;
+}
+
+.copy-button {
+    background: #0073aa;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.9em;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.copy-button:hover {
+    background: #005d87;
+}
+
+.copy-button .dashicons {
+    font-size: 16px;
+    height: 16px;
+    width: 16px;
+}
+
+.prompt-search-form .clear-filters {
+    background: #aaa;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.prompt-search-form .clear-filters:hover {
+    background: #666;
+}
+
+.prompt-search-form .clear-filters .dashicons,
+.prompt-search-form .filter-button
+{
+    font-size: 16px;
+    height: 16px;
+    width: 16px;
+}
+
+
+.highlight {
+    background-color: #ffff99;
+    border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+    .prompts-list {
+        grid-template-columns: 1fr;
+    }
+    .prompt-search-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .prompt-search-form .select2-container {
+        width: 100% !important;
+    }
+    .prompt-search-form button {
+        width: 48%;
+    }
+    .copy-button {
+        float: none;
+        margin-top: 10px;
+    }
+    .botones {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.prompts-pagination {
+    margin-top: 20px;
+    text-align: center;
+    width: 100%; /* Asegura que ocupe toda la fila */
+    clear: both; /* Evita que flote junto a otros elementos */
+}
+
+.prompts-pagination .page-numbers {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 5px;
+    background: #f9f9f9;
+    color: #0073aa;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.prompts-pagination .page-numbers.current {
+    background: #0073aa;
+    color: #fff;
+    border-color: #0073aa;
+}
+
+.prompts-pagination .page-numbers:hover {
+    background: #005d87;
+    color: #fff;
+    border-color: #005d87;
+}
+
+/* Para prompts-single */
+.prompts-single {
+    padding: 40px 0;
+}
+.prompts-single hr {
+    border-color: #ddd;
+    border-top: none;
+}
+.prompts-single .prompt-text {
+    background:#f9f9f9;
+}
+/* Estilos existentes... */
+
+.copy-button {
+    padding: 5px 10px;
+    background: #0073aa;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.copy-button:hover {
+    background: #005d87;
+}
+
+.copy-button .dashicons {
+    font-size: 16px;
+    height: 16px;
+    width: 16px;
+}
+
+/* Ajustar prompt-text para que el botón flote bien */
+.prompt-text {
+    position: relative;
+    overflow: hidden; /* Evita que el botón desborde */
+}
