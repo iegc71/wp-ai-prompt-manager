@@ -1,40 +1,19 @@
 <?php
-if (!defined('ABSPATH')) {
+if (!defined('WP_UNINSTALL_PLUGIN')) {
     exit;
 }
 
-class Prompts_Uninstall {
-    public static function cleanup() {
-        if (!defined('WP_UNINSTALL_PLUGIN')) {
-            return;
-        }
+// Verificar si el usuario activó la opción
+$delete_data = get_option('prompts_plugin_delete_data_on_uninstall');
 
-        // Eliminar prompts
-        $prompts = get_posts(array(
-            'post_type' => 'prompt',
-            'posts_per_page' => -1,
-            'post_status' => 'any',
-            'fields' => 'ids',
-        ));
-        foreach ($prompts as $prompt_id) {
-            wp_delete_post($prompt_id, true);
-        }
+if ($delete_data) {
+    global $wpdb;
 
-        // Eliminar términos de la taxonomía
-        $terms = get_terms(array(
-            'taxonomy' => 'categoria-de-prompt',
-            'hide_empty' => false,
-            'fields' => 'ids',
-        ));
-        if (!is_wp_error($terms)) {
-            foreach ($terms as $term_id) {
-                wp_delete_term($term_id, 'categoria-de-prompt');
-            }
-        }
+    // Eliminar las opciones del plugin
+    delete_option('prompts_plugin_delete_data_on_uninstall');
 
-        // Eliminar metadatos huérfanos
-        global $wpdb;
-        $wpdb->query("DELETE FROM $wpdb->postmeta WHERE meta_key = 'prompt_description'");
-        $wpdb->query("DELETE FROM $wpdb->postmeta WHERE meta_key = 'prompt_content'");
-    }
+    // Eliminar los posts del Custom Post Type
+    $wpdb->query("DELETE FROM {$wpdb->posts} WHERE post_type = 'prompt'");
+    $wpdb->query("DELETE FROM {$wpdb->postmeta} WHERE post_id NOT IN (SELECT ID FROM {$wpdb->posts})");
+    $wpdb->query("DELETE FROM {$wpdb->term_relationships} WHERE object_id NOT IN (SELECT ID FROM {$wpdb->posts})");
 }
