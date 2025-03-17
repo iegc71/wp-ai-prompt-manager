@@ -33,3 +33,12 @@ add_action('plugins_loaded', function() {
     new Prompts_Templates();
     new Prompts_Settings();
 });
+function prompts_flush_rewrite_rules() {
+    flush_rewrite_rules();
+}
+register_activation_hook(__FILE__, 'prompts_flush_rewrite_rules');
+
+function prompts_deactivate() {
+    flush_rewrite_rules();
+}
+register_deactivation_hook(__FILE__, 'prompts_deactivate');
