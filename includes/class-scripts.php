@@ -14,7 +14,7 @@ class Prompts_Scripts {
     }
 
     public function enqueue_frontend_scripts() {
-        if (is_singular('prompt')) {
+        if (is_singular('prompt') || is_post_type_archive('prompt')) {
             wp_enqueue_style('prompts-plugin-frontend-style', PROMPTS_PLUGIN_URL . 'assets/css/frontend-style.css');
             wp_enqueue_script('prompts-plugin-frontend-script', PROMPTS_PLUGIN_URL . 'assets/js/frontend-script.js', ['jquery'], '1.0', true);
         }
