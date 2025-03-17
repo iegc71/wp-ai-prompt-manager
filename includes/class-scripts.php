@@ -3,6 +3,7 @@ class Prompts_Scripts {
     public function __construct() {
         add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
         add_action('wp_enqueue_scripts', [$this, 'enqueue_frontend_scripts']);
+        wp_enqueue_style('dashicons');
     }
 
     public function enqueue_admin_scripts($hook) {
