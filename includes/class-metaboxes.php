@@ -44,6 +44,7 @@ class Prompts_Metaboxes {
                         'media_buttons' => true,
                         'textarea_rows' => 10,
                         'teeny' => false, // Editor completo, ajusta a true para una versi車n simplificada
+                        'quicktags' => true // Habilita opciones de formato
                     )
                 );
                 ?>
