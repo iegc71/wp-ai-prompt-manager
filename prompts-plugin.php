@@ -4,6 +4,7 @@
  * Description: Un plugin para gestionar prompts en WordPress.
  * Version: 1.0.0
  * Author: Ivan Garcia Cordero
+ * Text Domain: prompts-plugin
  */
 
 // Evitar acceso directo

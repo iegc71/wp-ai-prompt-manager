@@ -65,6 +65,7 @@
   background: #005d87;
 }
 
+
 .prompts-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -72,6 +73,7 @@
 }
 .body-prompt-item {
   padding: 15px;
+  background: #f9f9f9;
 }
 .footer-prompt-item {
   background: #dde9f2;

@@ -23,7 +23,7 @@ class Prompts_Metaboxes {
 
     public function fields_callback($post) {
         wp_nonce_field('prompts_save_meta_box', 'prompts_nonce');
-        
+
         $description = get_post_meta($post->ID, 'prompt_description', true);
         $content = get_post_meta($post->ID, 'prompt_content', true);
         ?>
@@ -56,16 +56,20 @@ class Prompts_Metaboxes {
         if (!isset($_POST['prompts_nonce']) || !wp_verify_nonce($_POST['prompts_nonce'], 'prompts_save_meta_box')) {
             return;
         }
-        
+
         if (isset($_POST['prompt_description'])) {
             $description = substr(sanitize_textarea_field($_POST['prompt_description']), 0, 160); // Limita a 160 caracteres
             update_post_meta($post_id, 'prompt_description', $description);
         }
-        
+
         if (isset($_POST['prompt_content'])) {
             $content = wp_kses_post($_POST['prompt_content']); // Permite HTML seguro
             update_post_meta($post_id, 'prompt_content', $content);
         }
+        if ( ! isset( $_POST['post_type'] ) || $_POST['post_type'] !== 'prompt' ) {
+            return;
+        }
+
     }
 
     public function enqueue_scripts() {
