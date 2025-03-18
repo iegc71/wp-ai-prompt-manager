@@ -1,25 +1,37 @@
-# prompt-plugin
+/*************  ✨ Codeium Command ⭐  *************/
+# Prompts Plugin
 
-prompts-plugin/
-├── prompts-plugin.php          # Archivo principal del plugin
-├── uninstall.php               # Archivo de desinstalación del plugin
-├── includes/                   # Carpeta para clases y lógica del plugin
-│   ├── class-post-type.php     # Registro del Custom Post Type "prompt"
-│   ├── class-taxonomy.php      # Registro de la taxonomía "categoria-de-prompt"
-│   ├── class-metaboxes.php     # Metaboxes para campos personalizados
-│   ├── class-scripts.php       # Carga de scripts y estilos (JS/CSS)
-│   ├── class-templates.php     # Gestión de plantillas personalizadas
-│   ├── class-settings.php      # Nueva clase para el panel de configuración
-│   ├── class-uninstall.php     # Limpieza al desinstalar el plugin
-│   ├── helpers.php             # Funciones auxiliares para reutilización
-├── templates/                  # Carpeta para plantillas personalizadas
-│   ├── archive-prompt.php      # Plantilla para la lista de prompts
-│   ├── single-prompt.php       # Plantilla para la página individual de un prompt
-├── assets/                     # Carpeta para archivos estáticos
-│   ├── css/                    # Estilos CSS
-│   │   ├── admin-style.css
-│   │   ├── frontend-style.css
-│   ├── js/                     # Scripts JavaScript
-│   │   ├── admin-script.js
-│   │   ├── frontend-script.js
-└── readme.txt                  # Descripción del plugin
+Un plugin para gestionar prompts en WordPress.
+
+## Características
+
+* Permite crear, editar y eliminar prompts
+* Permite asignar categorías a los prompts
+* Permite buscar prompts por título o descripción
+* Permite copiar los prompts a la portapapeles
+* Permite mostrar una lista de prompts en la página de inicio
+* Permite mostrar una página de detalle de cada prompt
+* Permite eliminar los datos del plugin al desinstalarlo
+
+## Instalación
+
+1. Descarga el plugin
+2. Descomprime el archivo descargado
+3. Sube la carpeta descomprimida a la carpeta "wp-content/plugins" de tu sitio web
+4. Activa el plugin en el administrador de WordPress
+
+## Uso
+
+* Para crear un nuevo prompt, ve a "Prompts" > "Nuevo Prompt"
+* Para editar un prompt, ve a "Prompts" > "Todos los Prompts", selecciona el prompt que deseas editar y haz clic en "Editar"
+* Para eliminar un prompt, ve a "Prompts" > "Todos los Prompts", selecciona el prompt que deseas eliminar y haz clic en "Eliminar"
+* Para asignar categorías a un prompt, ve a "Prompts" > "Editar Prompt", selecciona las categorías que deseas asignar y haz clic en "Guardar"
+* Para buscar prompts, ve a "Prompts" > "Buscar Prompts", escribe el texto que deseas buscar y haz clic en "Buscar"
+* Para copiar un prompt a la portapapeles, ve a la página de detalle del prompt y haz clic en el botón "Copiar"
+* Para mostrar una lista de prompts en la página de inicio, ve a "Apariencia" > "Personalizar", selecciona "Prompts" como tipo de contenido y haz clic en "Guardar"
+* Para mostrar una página de detalle de cada prompt, ve a "Apariencia" > "Personalizar", selecciona "Página de Detalle de Prompts" como tipo de contenido y haz clic en "Guardar"
+
+## Licencia
+
+Este plugin está bajo la licencia GPLv2.
+/******  95c053a7-ad2d-48d7-8fb0-85646627db2e  *******/
