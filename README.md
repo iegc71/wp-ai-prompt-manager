@@ -1,7 +1,6 @@
-/*************  ✨ Codeium Command ⭐  *************/
 # Prompts Plugin
 
-Un plugin para gestionar prompts en WordPress.
+Un plugin para coleccionar prompts en WordPress.
 
 ## Características
 
