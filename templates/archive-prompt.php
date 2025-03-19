@@ -25,16 +25,7 @@ get_header();
                 <span class="dashicons dashicons-no"></span>
             </button>
         </div>
-
     </form>
-    <script>
-    jQuery(document).ready(function($) {
-        $(".category-select").select2({
-            placeholder: "Selecciona Categorías...",
-            allowClear: true
-        });
-    });
-    </script>
     <div class="prompts-list">
         <?php
         $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
@@ -84,68 +75,70 @@ get_header();
                     }
                     $prompt_content = get_post_meta(get_the_ID(), 'prompt_content', true);
                     $plain_content = strip_tags($prompt_content);
-        ?>
-        <div class="prompt-item-wrapper">
-        <div class="body-prompt-item">
-        <h2><a href="<?php the_permalink(); ?>"><?php echo $highlighted_title; ?></a></h2>
-        <?php if ($highlighted_desc) : ?>
-            <p class="prompt-description"><?php echo $highlighted_desc; ?></p>
-        <?php endif; ?>
+                    $copy_count = get_post_meta(get_the_ID(), 'prompt_copy_count', true); // Get initial copy count
+                    ?>
+                    <div class="prompt-item-wrapper">
+                        <div class="body-prompt-item">
+                            <h2><a href="<?php the_permalink(); ?>"><?php echo $highlighted_title; ?></a></h2>
+                            <?php if ($highlighted_desc) : ?>
+                                <p class="prompt-description"><?php echo $highlighted_desc; ?></p>
+                            <?php endif; ?>
+                            <!--<?php if ($prompt_content) : ?>-->
+                            <!--    <p class="prompt-text"><strong>Prompt:</strong> <?php echo wp_kses_post($prompt_content); ?></p>-->
+                            <!--<?php endif; ?>-->
+                        </div>
+                        <div class="footer-prompt-item">
+                            <p class="prompt-categories">
+                                <strong>Categorías:</strong>
+                                <?php
+                                $categories = get_the_terms(get_the_ID(), 'categoria-de-prompt');
+                                if ($categories && !is_wp_error($categories)) {
+                                    $cat_names = array();
+                                    foreach ($categories as $category) {
+                                        //$cat_link = add_query_arg('categoria', $category->slug, remove_query_arg('prompt_search'));
+                                        $cat_link = add_query_arg(array(
+                                            'categorias' => array($category->slug)
+                                        ), remove_query_arg(array('prompt_search', 'paged')));
 
-        <!--<?php if ($prompt_content) : ?>-->
-        <!--    <p class="prompt-text"><strong>Prompt:</strong> <?php echo wp_kses_post($prompt_content); ?></p>-->
-        <!--<?php endif; ?>-->
-    </div>
-    <div class="footer-prompt-item">
-        <p class="prompt-categories">
-            <strong>Categorías:</strong>
-            <?php
-            $categories = get_the_terms(get_the_ID(), 'categoria-de-prompt');
-            if ($categories && !is_wp_error($categories)) {
-                $cat_names = array();
-                foreach ($categories as $category) {
-                    //$cat_link = add_query_arg('categoria', $category->slug, remove_query_arg('prompt_search'));
-                    $cat_link = add_query_arg(array(
-                        'categorias' => array($category->slug)
-                    ), remove_query_arg(array('prompt_search', 'paged')));
-
-                    $cat_names[] = '<a href="' . esc_url($cat_link) . '">' . esc_html($category->name) . '</a>';
+                                        $cat_names[] = '<a href="' . esc_url($cat_link) . '">' . esc_html($category->name) . '</a>';
+                                    }
+                                    echo implode(', ', $cat_names);
+                                }
+                                ?>
+                                <button class="copy-button"
+                                    data-html="<?php echo esc_attr($prompt_content); ?>"
+                                    data-text="<?php echo esc_attr($plain_content); ?>"
+                                    data-postid="<?php echo get_the_ID(); ?>"
+                                    data-copies="<?php echo esc_attr($copy_count); ?>"
+                                    style="float: right; margin-left: 10px;">
+                                    <span class="dashicons dashicons-clipboard"></span> Copiar
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                    <?php
                 }
-                echo implode(', ', $cat_names);
             }
-            ?>
-            <button class="copy-button"
-                data-html="<?php echo esc_attr($prompt_content); ?>"
-                data-text="<?php echo esc_attr($plain_content); ?>"
-                style="float: right; margin-left: 10px;">
-                <span class="dashicons dashicons-clipboard"></span> Copiar
-            </button>
-        </p>
-    </div>
-</div>
-<?php
+            wp_reset_postdata();
+        } else {
+            echo '<p>No se encontraron prompts.</p>';
+            echo '<p>Debug: Búsqueda - ' . esc_html($search_query) . ' | Categorías - ' . esc_html(implode(', ', $selected_categories)) . ' | Encontrados - 0</p>';
         }
-    }
-    wp_reset_postdata();
-} else {
-    echo '<p>No se encontraron prompts.</p>';
-    echo '<p>Debug: Búsqueda - ' . esc_html($search_query) . ' | Categorías - ' . esc_html(implode(', ', $selected_categories)) . ' | Encontrados - 0</p>';
-}
-?>
-</div>
-<!-- Movemos la paginación fuera de prompts-list -->
-<div class="prompts-pagination">
-<?php
-echo paginate_links(array(
-    'total' => $prompts_query->max_num_pages,
-    'current' => $paged,
-    'prev_text' => __('« Anterior'),
-    'next_text' => __('Siguiente »'),
-    'format' => '?paged=%#%',
-    'base' => esc_url(str_replace(999999999, '%#%', get_pagenum_link(999999999))),
-));
-?>
-</div>
+        ?>
+    </div>
+    <!-- Movemos la paginación fuera de prompts-list -->
+    <div class="prompts-pagination">
+    <?php
+    echo paginate_links(array(
+        'total' => $prompts_query->max_num_pages,
+        'current' => $paged,
+        'prev_text' => __('« Anterior'),
+        'next_text' => __('Siguiente »'),
+        'format' => '?paged=%#%',
+        'base' => esc_url(str_replace(999999999, '%#%', get_pagenum_link(999999999))),
+    ));
+    ?>
+    </div>
 </div>
 <?php
 get_footer();

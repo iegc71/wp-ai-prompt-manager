@@ -23,13 +23,15 @@ require_once PROMPTS_PLUGIN_DIR . 'includes/class-metaboxes.php';
 require_once PROMPTS_PLUGIN_DIR . 'includes/class-scripts.php';
 require_once PROMPTS_PLUGIN_DIR . 'includes/class-templates.php';
 require_once PROMPTS_PLUGIN_DIR . 'includes/class-settings.php';
+require_once PROMPTS_PLUGIN_DIR . 'includes/class-ajax-handler.php';
 require_once PROMPTS_PLUGIN_DIR . 'includes/helpers.php';
+require_once PROMPTS_PLUGIN_DIR . 'includes/class-admin.php';
 
 // Función para inicializar la clase Prompts_Post_Type y registrar el post type
-function prompts_register_post_type() {
-    $post_type = new Prompts_Post_Type();
-    $post_type->register_post_type(); // Llamamos directamente al método de registro
-}
+//function prompts_register_post_type() {
+//    $post_type = new Prompts_Post_Type();
+//    $post_type->register_post_type(); // Llamamos directamente al método de registro
+//}
 
 // Función para inicializar las clases adicionales
 function initialize_prompts_additional_classes() {
@@ -38,14 +40,17 @@ function initialize_prompts_additional_classes() {
     new Prompts_Scripts();
     new Prompts_Templates();
     new Prompts_Settings();
+    new Prompts_Ajax();
+    new Prompts_Admin();
 }
 
 // Registro normal en init
 add_action('init', function() {
-    prompts_register_post_type();
+    $post_type = new Prompts_Post_Type();
+    $post_type->register_post_type();
     initialize_prompts_additional_classes();
 });
-
+new Prompts_Taxonomy();
 // Función de activación
 function prompts_activate_function() {
     // Registrar el post type inmediatamente

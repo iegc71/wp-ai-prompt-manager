@@ -58,15 +58,34 @@ class Prompts_Metaboxes {
             return;
         }
 
+        if (!current_user_can('edit_post', $post_id)) {
+            return;
+        }
+
         if (isset($_POST['prompt_description'])) {
             $description = substr(sanitize_textarea_field($_POST['prompt_description']), 0, 160); // Limita a 160 caracteres
-            update_post_meta($post_id, 'prompt_description', $description);
+            if (!update_post_meta($post_id, 'prompt_description', $description)) {
+                error_log("Error updating prompt description for post ID: $post_id");
+            }
         }
 
         if (isset($_POST['prompt_content'])) {
             $content = wp_kses_post($_POST['prompt_content']); // Permite HTML seguro
-            update_post_meta($post_id, 'prompt_content', $content);
+            if (!update_post_meta($post_id, 'prompt_content', $content)) {
+                error_log("Error updating prompt content for post ID: $post_id");
+            }
         }
+        // Add copy count handling
+        if (isset($_POST['prompt_copy_count'])) {
+            $copy_count = get_post_meta($post_id, 'prompt_copy_count', true) ?: 0; // Use null coalescing operator
+            update_post_meta($post_id, 'prompt_copy_count', $copy_count);
+        } else {
+            // Initialize copy count if it doesn't exist
+            if (!get_post_meta($post_id, 'prompt_copy_count', true)) {
+                update_post_meta($post_id, 'prompt_copy_count', 0);
+            }
+        }
+        // For any other custom fields
         if ( ! isset( $_POST['post_type'] ) || $_POST['post_type'] !== 'prompt' ) {
             return;
         }
