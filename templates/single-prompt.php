@@ -26,12 +26,15 @@ if (have_posts()) : while (have_posts()) : the_post();
         <?php
         $prompt_content = get_post_meta(get_the_ID(), 'prompt_content', true);
         $plain_content = strip_tags($prompt_content); // Texto plano para fallback
+        $copy_count = get_post_meta(get_the_ID(), 'prompt_copy_count', true); // Get initial copy count
         if ($prompt_content) : ?>
             <div class="prompt-text">
                 <?php echo wp_kses_post($prompt_content); ?>
                 <button class="copy-button"
                         data-html="<?php echo esc_attr($prompt_content); ?>"
                         data-text="<?php echo esc_attr($plain_content); ?>"
+                        data-postid="<?php echo get_the_ID(); ?>"
+                        data-copies="<?php echo esc_attr($copy_count); ?>"
                         style="float: right; margin-left: 10px;">
                     <span class="dashicons dashicons-clipboard"></span> Copiar
                 </button>
