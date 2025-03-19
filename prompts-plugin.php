@@ -7,35 +7,50 @@
  * Text Domain: prompts-plugin
  */
 
-// Evitar acceso directo
 if (!defined('ABSPATH')) {
     exit;
 }
 
-// Definir la ruta base del plugin
+// Definir rutas
 define('PROMPTS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('PROMPTS_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 // Incluir archivos de clases
-require_once PROMPTS_PLUGIN_DIR . 'includes/class-post-type.php';
-require_once PROMPTS_PLUGIN_DIR . 'includes/class-taxonomy.php';
-require_once PROMPTS_PLUGIN_DIR . 'includes/class-metaboxes.php';
-require_once PROMPTS_PLUGIN_DIR . 'includes/class-scripts.php';
-require_once PROMPTS_PLUGIN_DIR . 'includes/class-templates.php';
-require_once PROMPTS_PLUGIN_DIR . 'includes/class-settings.php';
-require_once PROMPTS_PLUGIN_DIR . 'includes/class-ajax-handler.php';
-require_once PROMPTS_PLUGIN_DIR . 'includes/helpers.php';
-require_once PROMPTS_PLUGIN_DIR . 'includes/class-admin.php';
+$includes = [
+    'class-post-type.php',
+    'class-taxonomy.php',
+    'class-metaboxes.php',
+    'class-scripts.php',
+    'class-templates.php',
+    'class-settings.php',
+    'class-ajax-handler.php',
+    'helpers.php',
+    'class-admin.php',
+];
 
-// Función para inicializar la clase Prompts_Post_Type y registrar el post type
-//function prompts_register_post_type() {
-//    $post_type = new Prompts_Post_Type();
-//    $post_type->register_post_type(); // Llamamos directamente al método de registro
-//}
+foreach ($includes as $file) {
+    $filepath = PROMPTS_PLUGIN_DIR . 'includes/' . $file;
+    if (file_exists($filepath)) {
+        require_once $filepath;
+    }
+}
 
-// Función para inicializar las clases adicionales
+// Registrar el Custom Post Type
+function register_prompts_post_type() {
+    $post_type = new Prompts_Post_Type();
+    $post_type->register_post_type();
+}
+add_action('init', 'register_prompts_post_type', 5); // Prioridad 5 para ejecutarse antes de las taxonomías
+
+// Registrar las taxonomías
+function register_prompts_taxonomies() {
+    $taxonomy = new Prompts_Taxonomy();
+    $taxonomy->register_taxonomy();
+}
+add_action('init', 'register_prompts_taxonomies', 10); // Prioridad 10 para asegurarse de que el post type ya existe
+
+// Registrar otras clases y funcionalidades
 function initialize_prompts_additional_classes() {
-    new Prompts_Taxonomy();
     new Prompts_Metaboxes();
     new Prompts_Scripts();
     new Prompts_Templates();
@@ -43,18 +58,13 @@ function initialize_prompts_additional_classes() {
     new Prompts_Ajax();
     new Prompts_Admin();
 }
+add_action('init', 'initialize_prompts_additional_classes', 15); // Se ejecuta después del post type y taxonomías
 
-// Registro normal en init
-add_action('init', function() {
-    $post_type = new Prompts_Post_Type();
-    $post_type->register_post_type();
-    initialize_prompts_additional_classes();
-});
-new Prompts_Taxonomy();
 // Función de activación
 function prompts_activate_function() {
-    // Registrar el post type inmediatamente
-    prompts_register_post_type();
+    // Registrar el post type y taxonomías en la activación
+    register_prompts_post_type();
+    register_prompts_taxonomies();
 
     // Forzar actualización de reglas de reescritura
     flush_rewrite_rules(true);
