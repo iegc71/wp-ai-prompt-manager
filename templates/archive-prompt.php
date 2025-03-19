@@ -34,6 +34,8 @@ get_header();
             'posts_per_page' => 10,
             'paged' => $paged,
             'post_status' => 'publish',
+            'orderby' => 'meta_value_num',
+            'order' => 'DESC'
         );
         if (!empty($selected_categories) && !in_array('', $selected_categories)) {
             $args['tax_query'] = array(
@@ -45,9 +47,27 @@ get_header();
                 ),
             );
         }
+        $args['meta_key'] = 'prompt_copy_count';
         $search_query = isset($_GET['prompt_search']) ? sanitize_text_field($_GET['prompt_search']) : '';
         $search_words = array_filter(explode(' ', strtolower(trim($search_query))));
         $normalized_search_words = array_map('remove_accents', $search_words);
+
+        // Custom orderby callback function
+        add_filter('posts_clauses', 'custom_order_by_copy_count_and_category', 10, 2);
+        function custom_order_by_copy_count_and_category($clauses, $query) {
+            if ($query->is_main_query() && $query->get('post_type') == 'prompt') {
+                global $wpdb;
+                $clauses['join'] .= " LEFT JOIN {$wpdb->term_relationships} AS tr ON {$wpdb->posts}.ID = tr.object_id";
+                $clauses['join'] .= " LEFT JOIN {$wpdb->term_taxonomy} AS tt ON tr.term_taxonomy_id = tt.term_taxonomy_id";
+                $clauses['join'] .= " LEFT JOIN {$wpdb->terms} AS t ON tt.term_id = t.term_id";
+                $clauses['orderby'] = "CAST(pm.meta_value AS UNSIGNED) DESC, t.name ASC";
+                $clauses['groupby'] = "{$wpdb->posts}.ID";
+                $clauses['where'] .= " AND tt.taxonomy = 'categoria-de-prompt'";
+                // Remove the filter to avoid affecting other queries
+                remove_filter('posts_clauses', 'custom_order_by_copy_count_and_category', 10);
+            }
+            return $clauses;
+        }
 
         $prompts_query = new WP_Query($args);
         if ($prompts_query->have_posts()) {
