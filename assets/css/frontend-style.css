@@ -84,7 +84,13 @@
     border: 1px solid #ddd;
     border-radius: 5px;
 }
-
+.prompt-item-wrapper {
+    height: fit-content;
+    border: solid 1px #e1e1e1;
+}
+.prompt-item-wrapper:hover, .prompt-item-wrapper:focus {
+    box-shadow: 0 0 24px #00000045;
+}
 .single-prompt h1 {
     font-size: 2em;
 }
