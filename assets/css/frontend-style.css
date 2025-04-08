@@ -45,11 +45,10 @@
     margin: 0;
     height:auto !important;
 }
-/*.post-type-archive-prompt .select2-results__option {*/
-/*    margin-top: 32px;*/
-/*}*/
+
 .post-type-archive-prompt .select2-results__option {
     background-color: #0273aa !important;
+    color: white;
 }
 
 .prompt-search-form button {
@@ -84,13 +83,7 @@
     border: 1px solid #ddd;
     border-radius: 5px;
 }
-.prompt-item-wrapper {
-    height: fit-content;
-    border: solid 1px #e1e1e1;
-}
-.prompt-item-wrapper:hover, .prompt-item-wrapper:focus {
-    box-shadow: 0 0 24px #00000045;
-}
+
 .single-prompt h1 {
     font-size: 2em;
 }
@@ -251,8 +244,40 @@
 }
 .prompts-single .prompt-text {
     background:#f9f9f9;
+    line-height: 1.6;
 }
-/* Estilos existentes... */
+.prompts-single .prompt-text p {
+    margin-bottom: 0.5em; /* Restaura margen inferior para párrafos */
+}
+
+.prompts-single .prompt-text ol,
+.prompts-single .prompt-text ul {
+    margin-bottom: 1.3em; /* Espacio después de la lista */
+    padding-left: 25px; /* Restaura la sangría (ajusta el valor según necesites) */
+}
+
+.prompts-single .prompt-text ol {
+    list-style: decimal; /* Asegura que se muestren números */
+}
+
+.prompts-single .prompt-text ul {
+    list-style: disc; /* Asegura que se muestren viñetas */
+}
+
+.prompts-single .prompt-text li {
+    margin-bottom: 0.5em; /* Espacio entre elementos de la lista */
+    display: list-item; /* Asegura que se comporte como item de lista */
+    padding: 0; /* Asegura que no herede padding extraño */
+    margin-left: 0; /* Asegura que no herede margen extraño */
+}
+
+/* Si también necesitas estilos para la vista de archivo
+.prompts-archive .prompt-description ol,
+.prompts-archive .prompt-description ul {
+     margin-bottom: 1em;
+     padding-left: 40px;
+
+} /*
 
 .copy-button {
     padding: 5px 10px;
