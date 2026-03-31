@@ -1,7 +1,8 @@
 # Prompts Plugin
 
 Un plugin para coleccionar prompts en WordPress.
-* DEMO: https://codelisto.com/prompts/
+
+DEMO: https://codelisto.com/prompts/
 
 ## Características
 
