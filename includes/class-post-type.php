@@ -4,23 +4,19 @@ if (!defined('ABSPATH')) {
 }
 
 class Prompts_Post_Type {
-    public function __construct() {
-        add_action('init', array($this, 'register_post_type'));
-    }
-
     public function register_post_type() {
         $labels = array(
-            'name' => 'Prompts',
-            'singular_name' => 'Prompt',
-            'menu_name' => 'Prompts',
-            'add_new' => 'Añadir Nuevo',
-            'add_new_item' => 'Añadir Nuevo Prompt',
-            'edit_item' => 'Editar Prompt',
-            'new_item' => 'Nuevo Prompt',
-            'view_item' => 'Ver Prompt',
-            'search_items' => 'Buscar Prompts',
-            'not_found' => 'No se encontraron prompts',
-            'not_found_in_trash' => 'No se encontraron prompts en la papelera',
+            'name' => __('Prompts', 'prompts-plugin'),
+            'singular_name' => __('Prompt', 'prompts-plugin'),
+            'menu_name' => __('Prompts', 'prompts-plugin'),
+            'add_new' => __('Añadir nuevo', 'prompts-plugin'),
+            'add_new_item' => __('Añadir nuevo prompt', 'prompts-plugin'),
+            'edit_item' => __('Editar prompt', 'prompts-plugin'),
+            'new_item' => __('Nuevo prompt', 'prompts-plugin'),
+            'view_item' => __('Ver prompt', 'prompts-plugin'),
+            'search_items' => __('Buscar prompts', 'prompts-plugin'),
+            'not_found' => __('No se encontraron prompts', 'prompts-plugin'),
+            'not_found_in_trash' => __('No se encontraron prompts en la papelera', 'prompts-plugin'),
         );
 
         $args = array(
@@ -29,12 +25,12 @@ class Prompts_Post_Type {
             'has_archive' => true,
             'rewrite' => array(
                 'slug' => 'prompts',
-                'with_front' => false, // Elimina el prefijo /blog/
+                'with_front' => false,
             ),
-            'supports' => array('title', 'custom-fields', 'comments'),
+            'supports' => array('title', 'editor', 'custom-fields', 'comments'),
             'show_in_rest' => true,
             'menu_icon' => 'dashicons-reddit',
-            'comment_status' => 'open', // Forzamos comentarios abiertos por defecto
+            'comment_status' => 'open',
         );
 
         register_post_type('prompt', $args);

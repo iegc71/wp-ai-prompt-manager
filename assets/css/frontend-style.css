@@ -46,7 +46,8 @@
     height:auto !important;
 }
 
-.post-type-archive-prompt .select2-results__option {
+.post-type-archive-prompt .select2-results__option,
+.prompts-archive .select2-results__option {
     background-color: #0273aa !important;
     color: white;
 }
@@ -78,7 +79,8 @@
     background: #dde9f2;
     padding: 6px 15px;
 }
-.prompt-item {
+.prompt-item,
+.prompt-item-wrapper {
     background: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -92,12 +94,14 @@
     font-size:24px;
 }
 
-.prompt-item h2 a {
+.prompt-item h2 a,
+.prompt-item-wrapper h2 a {
     color: #0073aa;
     text-decoration: none;
 }
 
-.prompt-item h2 a:hover {
+.prompt-item h2 a:hover,
+.prompt-item-wrapper h2 a:hover {
     text-decoration: underline;
 }
 
@@ -271,38 +275,12 @@
     margin-left: 0; /* Asegura que no herede margen extraño */
 }
 
-/* Si también necesitas estilos para la vista de archivo
-.prompts-archive .prompt-description ol,
-.prompts-archive .prompt-description ul {
-     margin-bottom: 1em;
-     padding-left: 40px;
+/* Listas dentro de la descripción en archivo (opcional):
+.prompts-archive .prompt-description ul { margin-bottom: 1em; padding-left: 40px; }
+*/
 
-} /*
-
-.copy-button {
-    padding: 5px 10px;
-    background: #0073aa;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.copy-button:hover {
-    background: #005d87;
-}
-
-.copy-button .dashicons {
-    font-size: 16px;
-    height: 16px;
-    width: 16px;
-}
-
-/* Ajustar prompt-text para que el bot贸n flote bien */
+/* Ajustar prompt-text para que el botón flote bien */
 .prompt-text {
     position: relative;
-    overflow: hidden; /* Evita que el bot贸n desborde */
+    overflow: hidden;
 }

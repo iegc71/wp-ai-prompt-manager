@@ -4,12 +4,18 @@
  * Description: Un plugin para gestionar prompts en WordPress.
  * Version: 1.0.0
  * Author: Ivan Garcia Cordero
+ * Author URI: https://codelisto.com
  * Text Domain: prompts-plugin
+ * Domain Path: /languages
  */
 
 if (!defined('ABSPATH')) {
     exit;
 }
+
+add_action('init', function () {
+    load_plugin_textdomain('prompts-plugin', false, dirname(plugin_basename(__FILE__)) . '/languages');
+}, 0);
 
 // Definir rutas
 define('PROMPTS_PLUGIN_DIR', plugin_dir_path(__FILE__));
@@ -25,7 +31,9 @@ $includes = [
     'class-settings.php',
     'class-ajax-handler.php',
     'helpers.php',
+    'prompt-list.php',
     'class-admin.php',
+    'class-shortcodes.php',
 ];
 
 foreach ($includes as $file) {
@@ -57,6 +65,7 @@ function initialize_prompts_additional_classes() {
     new Prompts_Settings();
     new Prompts_Ajax();
     new Prompts_Admin();
+    new Prompts_Shortcodes();
 }
 add_action('init', 'initialize_prompts_additional_classes', 15); // Se ejecuta después del post type y taxonomías
 
@@ -76,3 +85,12 @@ function prompts_deactivate_function() {
     flush_rewrite_rules(true);
 }
 register_deactivation_hook(__FILE__, 'prompts_deactivate_function');
+
+/**
+ * Añade un enlace de 'Configuración' en la lista de plugins.
+ */
+add_filter('plugin_action_links_' . plugin_basename(__FILE__), function($links) {
+    $settings_link = '<a href="options-general.php?page=prompts-plugin">' . __('Configuración', 'prompts-plugin') . '</a>';
+    array_unshift($links, $settings_link);
+    return $links;
+});

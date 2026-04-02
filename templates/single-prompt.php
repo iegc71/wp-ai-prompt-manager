@@ -13,7 +13,7 @@ if (have_posts()) : while (have_posts()) : the_post();
                 $cat_link = get_term_link($category);
                 $cat_names[] = '<a href="' . esc_url($cat_link) . '">' . esc_html($category->name) . '</a>';
             }
-            echo '<p class="prompt-categories">Categorías: ' . implode(', ', $cat_names) . '</p>';
+            echo '<p class="prompt-categories">' . esc_html__('Categorías:', 'prompts-plugin') . ' ' . implode(', ', $cat_names) . '</p>';
         }
         ?>
         <?php
@@ -21,7 +21,7 @@ if (have_posts()) : while (have_posts()) : the_post();
         if ($desc) : ?>
             <hr>
             <p class="prompt-description"><?php echo wp_kses_post($desc); ?></p>
-            <p><strong>Prompt:</strong></p>
+            <p><strong><?php esc_html_e('Prompt:', 'prompts-plugin'); ?></strong></p>
         <?php endif; ?>
         <?php
         $prompt_content = get_post_meta(get_the_ID(), 'prompt_content', true);
@@ -36,7 +36,7 @@ if (have_posts()) : while (have_posts()) : the_post();
                         data-postid="<?php echo get_the_ID(); ?>"
                         data-copies="<?php echo esc_attr($copy_count); ?>"
                         style="float: right; margin-left: 10px;">
-                    <span class="dashicons dashicons-clipboard"></span> Copiar
+                    <span class="dashicons dashicons-clipboard"></span> <?php esc_html_e('Copiar', 'prompts-plugin'); ?>
                 </button>
             </div>
         <?php endif; ?>
