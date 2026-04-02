@@ -30,6 +30,7 @@ DEMO: https://codelisto.com/prompts/
 * **Importar/Exportar:** Accede a la configuración para mover tus datos entre diferentes sitios.
 
 ### Visualización en el Sitio
+* **URL Predeterminada:** Tu lista de prompts aparecerá en "http://tusitio.com/prompts".
 * **Shortcodes:** Puedes insertar tu colección de prompts en cualquier página o entrada utilizando el shortcode `[lista_prompts]`.
 * **Shortcode de Selección de Prompts:** Puedes insertar los prompts que quieras usando sus identificadores únicos agregando al shortcode `[lista_prompts ids="id1,id2,id3"]`.
 * **Buscador:** El plugin incluye un sistema de filtrado dinámico para que los usuarios encuentren prompts por palabras clave o categorías.
