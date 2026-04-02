@@ -1,6 +1,6 @@
-# Prompts Plugin
+# WP AI PROMPT MANAGER
 
-Un plugin de WordPress para crear tu repositorio de prompts.
+Un plugin de WordPress para crear tu propio repositorio de prompts.
 
 DEMO: https://codelisto.com/prompts/
 
