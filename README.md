@@ -1,18 +1,18 @@
 # Prompts Plugin
 
-Un plugin para coleccionar prompts en WordPress.
+Un plugin de WordPress para crear tu repositorio de prompts.
 
 DEMO: https://codelisto.com/prompts/
 
 ## Características
 
-* Permite crear, editar y eliminar prompts
-* Permite asignar categorías a los prompts
-* Permite buscar prompts por título o descripción
-* Permite copiar los prompts a la portapapeles
-* Permite mostrar una lista de prompts en la página de inicio
-* Permite mostrar una página de detalle de cada prompt
-* Permite eliminar los datos del plugin al desinstalarlo
+* **Gestión Completa:** Crea, edita y organiza tus prompts de forma intuitiva.
+* **Categorización:** Clasifica tus prompts por temas para una mejor organización.
+* **Buscador Avanzado:** Filtra rápidamente por título, descripción o categoría.
+* **Copiado Rápido:** Botón integrado para copiar el contenido al portapapeles al instante.
+* **Portabilidad:** Exporta e importa tus prompts fácilmente para respaldos o migraciones.
+* **Diseño Responsivo:** Visualización optimizada tanto en la lista general como en la página de detalle.
+* **Limpieza Total:** Opción para eliminar todos los datos del plugin al desinstalarlo.
 
 ## Instalación
 
@@ -23,14 +23,17 @@ DEMO: https://codelisto.com/prompts/
 
 ## Uso
 
-* Para crear un nuevo prompt, ve a "Prompts" > "Nuevo Prompt"
-* Para editar un prompt, ve a "Prompts" > "Todos los Prompts", selecciona el prompt que deseas editar y haz clic en "Editar"
-* Para eliminar un prompt, ve a "Prompts" > "Todos los Prompts", selecciona el prompt que deseas eliminar y haz clic en "Eliminar"
-* Para asignar categorías a un prompt, ve a "Prompts" > "Editar Prompt", selecciona las categorías que deseas asignar y haz clic en "Guardar"
-* Para buscar prompts, ve a "Prompts" > "Buscar Prompts", escribe el texto que deseas buscar y haz clic en "Buscar"
-* Para copiar un prompt a la portapapeles, ve a la página de detalle del prompt y haz clic en el botón "Copiar"
-* Para mostrar una lista de prompts en la página de inicio, ve a "Apariencia" > "Personalizar", selecciona "Prompts" como tipo de contenido y haz clic en "Guardar"
-* Para mostrar una página de detalle de cada prompt, ve a "Apariencia" > "Personalizar", selecciona "Página de Detalle de Prompts" como tipo de contenido y haz clic en "Guardar"
+### Gestión de Prompts
+* **Crear:** Ve a "Prompts" > "Añadir nuevo" en el menú lateral de WordPress.
+* **Organizar:** Utiliza las "Categorías de Prompts" para clasificar tus textos (ej. Marketing, Programación, Escritura).
+* **Editar/Eliminar:** Gestiona tus entradas existentes desde la sección "Todos los Prompts".
+* **Importar/Exportar:** Accede a la configuración para mover tus datos entre diferentes sitios.
+
+### Visualización en el Sitio
+* **Shortcodes:** Puedes insertar tu colección de prompts en cualquier página o entrada utilizando el shortcode `[lista_prompts]`.
+* **Shortcode de Selección de Prompts:** Puedes insertar los prompts que quieras usando sus identificadores únicos agregando al shortcode `[lista_prompts ids="id1,id2,id3"]`.
+* **Buscador:** El plugin incluye un sistema de filtrado dinámico para que los usuarios encuentren prompts por palabras clave o categorías.
+* **Interacción:** Cada prompt incluye un botón de "Copiar" que permite al usuario llevarse el texto a su portapapeles con un solo clic, ideal para usar en herramientas de IA como ChatGPT o Claude.
 
 ## Licencia
 
