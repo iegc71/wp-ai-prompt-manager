@@ -84,6 +84,9 @@
     background: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .single-prompt h1 {
